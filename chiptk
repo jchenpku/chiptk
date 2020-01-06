@@ -504,8 +504,8 @@ function SE(){
   paste ${output_dir}/${output_fn}.treat.scores ${output_dir}/${output_fn}.control.scores | cut -f 10,20 | sed 1d | paste ${output_dir}/${output_fn}.peaks.sticthed.bed - >> ${output_dir}/${output_fn}.rose.ip
 
   echo -e "\ncalling super enhancers from ROSE R script.."
-  Rscript ${rose} ${output_dir}/ ${output_dir}/${output_fn}.rose.ip ${output_fn} ${output_fn}".wce"
-
+  #Rscript ${rose} ${output_dir}/ ${output_dir}/${output_fn}.rose.ip ${output_fn} ${output_fn}".wce" # this is not compatible with ROSE R script
+  R --no-save ${output_dir}/ ${output_dir}/${output_fn}.rose.ip ${output_fn} ${output_dir}/${output_fn}".wce" < ${rose}
   nSE=`wc -l ${output_dir}/${output_fn}"_Gateway_SuperEnhancers.bed"`
   echo -e "\nNumber of SEs identified: ${nSE}"
 
